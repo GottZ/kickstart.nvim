@@ -836,6 +836,65 @@ require('lazy').setup({
     end,
   },
 
+  -- tabs tabs tabs
+  {
+    'GottZ/barbar.nvim',
+    -- version = '^1.0.0', -- optional: only update when a new 1.x version is released
+    dependencies = {
+      'lewis6991/gitsigns.nvim', -- OPTIONAL: for git status
+      'nvim-tree/nvim-web-devicons', -- OPTIONAL: for file icons
+    },
+    init = function()
+      vim.g.barbar_auto_setup = false
+      vim.keymap.set('n', '<A-j>', '<Cmd>BufferPrevious<CR>', { desc = 'Buffer Previous' })
+      vim.keymap.set('n', '<A-k>', '<Cmd>BufferNext<CR>', { desc = 'Buffer Next' })
+      vim.keymap.set('n', '<A-h>', '<Cmd>BufferMovePrevious<CR>', { desc = 'Buffer move left' })
+      vim.keymap.set('n', '<A-l>', '<Cmd>BufferMoveNext<CR>', { desc = 'Buffer move right' })
+      vim.keymap.set('n', '<A-q>', '<Cmd>BufferClose<CR>', { desc = 'Buffer Close' })
+      vim.keymap.set('n', '<A-r>', '<Cmd>BufferRestore<CR>', { desc = 'Buffer Restore' })
+      vim.keymap.set('n', '<A-f>', '<Cmd>BufferPin<CR>', { desc = 'Buffer Pin / Unpin' })
+      vim.keymap.set('n', '<A-Q>', '<Cmd>BufferCloseAllButCurrentOrPinned<CR>', { desc = 'Buffer Close all but current or pinned' })
+      vim.keymap.set('n', '<A-s>', '<Cmd>BufferPick<CR>', { desc = 'Buffer pick' })
+      vim.keymap.set('n', '<A-S>', '<Cmd>BufferPickDelete<CR>', { desc = 'Buffer delete pick' })
+      vim.keymap.set('n', '<leader>bb', '<Cmd>BufferOrderByBufferNumber<CR>', { desc = 'Buffer Order by Buffer number' })
+      vim.keymap.set('n', '<leader>bn', '<Cmd>BufferOrderByName<CR>', { desc = 'Buffer Order by Name' })
+      vim.keymap.set('n', '<leader>bd', '<Cmd>BufferOrderByDirectory<CR>', { desc = 'Buffer Order by Directory' })
+      vim.keymap.set('n', '<leader>bl', '<Cmd>BufferOrderByLanguage<CR>', { desc = 'Buffer Order by Language' })
+      vim.keymap.set('n', '<leader>bw', '<Cmd>BufferOrderByWindowNumber<CR>', { desc = 'Buffer Order by Window Number' })
+
+      require('barbar').setup {
+        -- auto_hide = 1,
+        icons = {
+          preset = 'slanted',
+          separator = {
+            -- left = '',
+            -- right = '',
+            left = '',
+            right = '',
+          },
+          inactive = {
+            separator = {
+              left = '',
+              right = '',
+            },
+          },
+          pinned = {
+            separator = {
+              left = '',
+              right = '',
+            },
+          },
+        },
+      }
+    end,
+    opts = {
+      -- lazy.nvim will automatically call setup for you. put your options here, anything missing will use the default:
+      -- animation = true,
+      -- insert_at_start = true,
+      -- …etc.
+    },
+  },
+
   { -- You can easily change to a different colorscheme.
     -- Change the name of the colorscheme plugin below, and then
     -- change the command in the config to whatever the name of that colorscheme is.
