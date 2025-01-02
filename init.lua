@@ -901,7 +901,9 @@ require('lazy').setup({
     --
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
     -- 'folke/tokyonight.nvim',
-    'zenbones-theme/zenbones.nvim',
+    -- 'zenbones-theme/zenbones.nvim',
+    -- 'sho-87/kanagawa-paper.nvim',
+    'rebelot/kanagawa.nvim',
     dependencies = 'rktjmp/lush.nvim',
     priority = 1000, -- Make sure to load this before all the other start plugins.
     init = function()
@@ -909,10 +911,12 @@ require('lazy').setup({
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
       -- vim.cmd.colorscheme 'tokyonight-night'
-      vim.cmd.colorscheme 'zenwritten'
+      -- vim.cmd.colorscheme 'zenwritten'
+      -- vim.cmd.colorscheme 'kanagawa-paper'
+      vim.cmd.colorscheme 'kanagawa-dragon'
 
       -- You can configure highlights by doing something like:
-      vim.cmd.hi 'Comment gui=none'
+      -- vim.cmd.hi 'Comment gui=none'
     end,
   },
 
