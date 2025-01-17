@@ -159,7 +159,22 @@ vim.opt.scrolloff = 10
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
-vim.keymap.set('i', '<C-s>', '<C-o>:w<CR>', { expr = false, noremap = true, silent = true, desc = 'Save file in insert mode' })
+-- save file in insert mode
+vim.keymap.set('i', '<C-s>', '<C-o>:w<CR>', { expr = false, noremap = true, silent = true, desc = 'Save file' })
+-- save and run last command in insert mode
+-- vim.keymap.set('i', '<C-S-s>', '<C-o>:w<CR>:!!<CR>', { expr = false, noremap = true, desc = 'Save file and run last command' })
+
+-- save file in normal mode
+vim.keymap.set('n', '<C-s>', ':w<CR>', { expr = false, noremap = true, silent = true, desc = 'Save file' })
+-- save and run last command in normal mode
+-- vim.keymap.set('n', '<C-S-s>', ':w<CR>:!!<CR>', { expr = false, noremap = true, desc = 'Save file and run last command' })
+
+-- leader shortcut to save the document and run the last command
+vim.keymap.set('n', '<leader>dx', ':w<CR>:!!<CR>', { desc = 'Save file and run last command' })
+
+-- expand the brace expansion and put the cursor in the middle
+vim.keymap.set('n', '<leader>o', 'i<enter><esc>O', { desc = 'create a new line in between the current position' })
+vim.keymap.set('n', '<leader>O', 'I<enter><esc>O', { desc = 'create a new line in between after the next character' })
 
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
@@ -692,6 +707,15 @@ require('lazy').setup({
         end,
         mode = '',
         desc = '[F]ormat buffer',
+      },
+      {
+        '<leader>df',
+        function()
+          require('conform').format { async = true, lsp_format = 'fallback' }
+          vim.cmd('w')
+        end,
+        mode = '',
+        desc = 'format and save buffer',
       },
     },
     opts = {
