@@ -160,12 +160,16 @@ vim.opt.scrolloff = 10
 --  See `:help vim.keymap.set()`
 
 -- save file in insert mode
-vim.keymap.set('i', '<C-s>', '<C-o>:w<CR>', { expr = false, noremap = true, silent = true, desc = 'Save file' })
+-- vim.keymap.set('i', '<C-s>', '<C-o>:w<CR>', { expr = false, noremap = true, silent = true, desc = 'Save file' })
+vim.keymap.set({'i', 'n'}, '<C-s>', function ()
+  vim.cmd('write')
+  vim.diagnostic.setloclist() -- show diagnostics on save, in case there are unsolved issues.
+end, { expr = false, noremap = true, silent = true, desc = 'Save file' })
 -- save and run last command in insert mode
 -- vim.keymap.set('i', '<C-S-s>', '<C-o>:w<CR>:!!<CR>', { expr = false, noremap = true, desc = 'Save file and run last command' })
 
 -- save file in normal mode
-vim.keymap.set('n', '<C-s>', ':w<CR>', { expr = false, noremap = true, silent = true, desc = 'Save file' })
+-- vim.keymap.set('n', '<C-s>', ':w<CR>', { expr = false, noremap = true, silent = true, desc = 'Save file' })
 -- save and run last command in normal mode
 -- vim.keymap.set('n', '<C-S-s>', ':w<CR>:!!<CR>', { expr = false, noremap = true, desc = 'Save file and run last command' })
 
